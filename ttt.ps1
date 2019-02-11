@@ -19,20 +19,20 @@ Function Toast {
 #トーストテンプレート大きい画像を付けて5秒間表示する
 $template = @"
 <toast duration="5" >
-<visual>
-    <binding template="ToastGeneric">
-        <text>チェック君</text>
-        <text>オーナー、宜しければ一緒にお茶をいかがですか？</text>
-        <image placement="appLogoOverride" hint-align="center" src="C:\Users\take\Desktop\Monitor\img\detective.png"/>
-        <image src="C:\Users\take\Desktop\Monitor\img\moncra.png"/>
-        <text>Downloading your weekly playlist...</text>
-        <progress
-            title="Weekly playlist"
-            value="0.6"
-            valueStringOverride="15/26 songs"
-            status="Downloading..."/>
-</binding>
-</visual>
+    <visual>
+        <binding template="ToastGeneric">
+            <text>チェック君</text>
+            <text>オーナー、宜しければ一緒にお茶をいかがですか？</text>
+            <image placement="appLogoOverride" hint-align="center" src="C:\Users\take\Desktop\Monitor\img\detective.png"/>
+            <image src="C:\Users\take\Desktop\Monitor\img\moncra.png"/>
+            <text>Downloading your weekly playlist...</text>
+            <progress
+                title="Weekly playlist"
+                value="0.6"
+                valueStringOverride="15/26 songs"
+                status="Downloading..."/>
+    </binding>
+    </visual>
     <actions>
         #5つまで
         <input id="snoozeTime" type="selection" defaultInput="3">
