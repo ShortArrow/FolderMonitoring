@@ -1,0 +1,23 @@
+<toast duration="5">
+    <visual>
+        <binding template="ToastGeneric">
+            <text>hello</text>
+            <text>オーナー、宜しければ一緒にお茶をいかがですか？</text>
+            <text>$(Get-Date -Format 'HH:mm:ss')</text>
+            <image placement="appLogoOverride" hint-align="center" src="C:\Users\take\Documents\GitHub\FolderMonitoring\img\detective.png"/>
+            <image src="C:\Users\take\Documents\GitHub\FolderMonitoring\img\moncra.png"/>
+    </binding>
+    </visual>
+    <actions>
+        #5つまで
+        <input id="snoozeTime" type="selection" defaultInput="3">
+            <selection id="3" content="3 minutes" />
+            <selection id="5" content="5 minutes" />
+            <selection id="10" content="10 minutes" />
+            <selection id="15" content="15 minutes" />
+            <selection id="30" content="30 minutes" />
+        </input>
+        <action activationType="system" arguments="snooze" hint-inputId="snoozeTime" content="また誘って"/>
+        <action activationType="system" arguments="dismiss" content="やだ"/>
+    </actions>
+</toast>
