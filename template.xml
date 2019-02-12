@@ -6,7 +6,7 @@
             <text>$(Get-Date -Format 'HH:mm:ss')</text>
             <image placement="appLogoOverride" hint-align="center" src="C:\Users\take\Documents\GitHub\FolderMonitoring\img\detective.png"/>
             <image src="C:\Users\take\Documents\GitHub\FolderMonitoring\img\moncra.png"/>
-    </binding>
+        </binding>
     </visual>
     <actions>
         #5‚Â‚Ü‚Å
