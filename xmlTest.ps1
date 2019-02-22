@@ -25,5 +25,5 @@
     $aaa=[System.Xml]
     $xml.AppendChild("toast")
     $xml.CreateElement("div")
-    Write-Host $xml.ToString()
-    $xml.SaveToFileAsync("xmltest.xml")
+    Write-Output $xml.GetXml() | Out-File "xmltest.xml"
+    # $xml.SaveToFileAsync("xmltest.xml")
