@@ -44,6 +44,6 @@ $obj| ConvertTo-Json | Out-File .\newlog.json -Encoding default
 $newlog = Get-Content .\newlog.json -Encoding Default -Raw | ConvertFrom-Json
 $oldlog = Get-Content .\oldlog.json -Encoding Default -Raw | ConvertFrom-Json
 
-foreach ($item in $newlog[]) {
-    Write-Output $item
-}
+# foreach ($item in $newlog[]) {
+#     Write-Output $item
+# }
