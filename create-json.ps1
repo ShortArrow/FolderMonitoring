@@ -4,7 +4,7 @@ $ExtensionsConfigPath = ".\extensions-settings.cfg"
 $DIRS = (Get-Content $FoldersConfigPath) -as [string[]]
 $EXTS = (Get-Content $ExtensionsConfigPath) -as [string[]]
 $errorMessage = ""
-$obj = New-Object PSCustomObject 
+$obj = @() 
 foreach ($DIR in $DIRS) {
     if (Test-Path $DIR) {
         $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hogxlsxファイルだけに絞れます
