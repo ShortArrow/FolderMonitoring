@@ -7,7 +7,7 @@ $errorMessage = ""
 $obj = New-Object PSCustomObject 
 foreach ($DIR in $DIRS) {
     if (Test-Path $DIR) {
-        $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hoge.xlsxファイルだけに絞れます
+        $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hogxlsxファイルだけに絞れます
         Write-Output "<$finderPath>"
         $Files = (Get-ChildItem $finderPath -File -Depth 0 -Name) -as [string[]]
         $Folders = ( Get-ChildItem $finderPath -Directory -Depth 0 ) -as [string[]]
@@ -34,16 +34,16 @@ Add-Type -Assembly System.Windows.Forms
 # エラー表示
 if ($errorMessage -ne "") {
     [System.Windows.Forms.MessageBox]::Show( `
-            "「$errorMessage」 は`r`nアクセスできません", `
+            "「$errorMesge」 は`r`nアクセスできません", `
             "GFモニタリング！")
 }
 Remove-Item .\oldlog.json -Force
 Rename-Item .\newlog.json .\oldlog.json -Force
 $obj| ConvertTo-Json | Out-File .\newlog.json -Encoding default
 
-$newlog = Get-Content .\newlog.json -Encoding Default -Raw | ConvertFrom-Json
-$oldlog = Get-Content .\oldlog.json -Encoding Default -Raw | ConvertFrom-Json
+# $newlog = Get-Content .\newlog.json -Encoding Default -Raw | ConvertFrom-Json
+# $oldlog = Get-Content .\oldlog.json -Encoding Default -Raw | ConvertFrom-Json
 
-# foreach ($item in $newlog[]) {
+# foreach ($item in $oldlog) {
 #     Write-Output $item
 # }
