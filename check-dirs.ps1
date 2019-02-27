@@ -1,3 +1,7 @@
+function ffff {
+    Invoke-Item $DIRS
+}
+$PSVersionTable.PSVersion.Major
 # 複数フォルダを指定できる設計になっています(配列)。
 $FoldersConfigPath = ".\config\folders-settings.cfg"
 $ExtensionsConfigPath = ".\config\extensions-settings.cfg"
@@ -10,8 +14,8 @@ foreach ($DIR in $DIRS) {
     if (Test-Path $DIR) {
         $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hoge.xlsxファイルだけに絞れます
         Write-Output "[$finderPath]"
-        $Folders = (Get-ChildItem $finderPath -Directory -Depth 0 ) -as [string[]]
-        $Files = ( Get-ChildItem $finderPath -File -Depth 0 -Name) -as [string[]]
+        $Folders = (Get-ChildItem $finderPath | ?{ $_.GetType().Name -eq "DirectoryInfo"}) -as [string[]]
+        $Files = ( Get-ChildItem $finderPath | ?{ $_.GetType().Name -eq "FileInfo" }) -as [string[]]
         if ($null -ne $Files.Length) {
             $FileCount = $Files.Length.ToString("#,0")
         }
@@ -37,6 +41,7 @@ foreach ($DIR in $DIRS) {
             }
             $textBuffer += "あります。"
             if ($resultMessage -eq "") {
+                . .\toast.ps1 $textBuffer "GFモニタリング！" ffff
                 $resultMessage += $textBuffer
             }
             else {
@@ -65,6 +70,6 @@ if ($errorMessage -ne "") {
 #結果表示
 if ($resultMessage -ne "") {
     # [void][System.Windows.Forms.MessageBox]::Show($resultMessage, "GFモニタリング！")
-    . .\toast.ps1 "Change Detected" "FolderMonitoring" .\test.html
+    # . .\toast.ps1 $resultMessage "GFモニタリング！" .\test.html
 }
 exit

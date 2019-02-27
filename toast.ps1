@@ -35,7 +35,7 @@ function Show-NotifyIcon {
     
     # そのままだとイベントが走らない＆すぐに消えてしまうので適当wait
     while ( [DateTimeOffset]::UtcNow -lt $finishTime ) {
-        Start-Sleep -Milliseconds 1
+        Start-Sleep -Seconds 5
     }
     $notifyIcon.Dispose()
 }
@@ -43,3 +43,4 @@ function Show-NotifyIcon {
 $parameters = $MyInvocation.BoundParameters
 $parameters.CallBack = [scriptblock]::Create( $CallBack )
 Show-NotifyIcon @parameters
+exit

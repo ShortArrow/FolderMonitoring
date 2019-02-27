@@ -3,3 +3,4 @@ function fff {
 }
 
 . .\toast.ps1 "Change Detected" "FolderMonitoring" fff
+exit

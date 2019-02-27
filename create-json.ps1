@@ -13,7 +13,7 @@ foreach ($DIR in $DIRS) {
         $Folders = ( Get-ChildItem $finderPath -Directory -Depth 0 ) -as [string[]]
         $hashs = @()
         foreach ($item in $Files) {
-            $hashs+=@{index=$hash.Count;item=$item;make= 1;delete= 2;none=false}
+            $hashs+=@{index=$hash.Count;item=$item;make= "2019/02/01";delete= $null;none=$false}
         }
         $obj += @{index = $obj.Count; path = $DIR; Files = $hashs; Folders = $Folders }
         # $obj | Add-Member $obj1 -Name $DIR -MemberType NoteProperty
