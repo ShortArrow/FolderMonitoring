@@ -9,8 +9,8 @@ foreach ($DIR in $DIRS) {
     if (Test-Path $DIR) {
         $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hogxlsxファイルだけに絞れます
         Write-Output "<$finderPath>"
-        $Files = (Get-ChildItem $finderPath -File -Depth 0 -Name) -as [string[]]
-        $Folders = ( Get-ChildItem $finderPath -Directory -Depth 0 ) -as [string[]]
+        $Folders = (Get-ChildItem $finderPath | ? { $_.GetType().Name -eq "DirectoryInfo"}) -as [string[]]
+        $Files = ( Get-ChildItem $finderPath | ? { $_.GetType().Name -eq "FileInfo" }) -as [string[]]
         $hashs = @()
         foreach ($item in $Files) {
             $hashs+=@{index=$hash.Count;item=$item;make= "2019/02/01";delete= $null;none=$false}

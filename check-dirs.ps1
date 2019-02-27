@@ -14,8 +14,8 @@ foreach ($DIR in $DIRS) {
     if (Test-Path $DIR) {
         $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hoge.xlsxファイルだけに絞れます
         Write-Output "[$finderPath]"
-        $Folders = (Get-ChildItem $finderPath | ?{ $_.GetType().Name -eq "DirectoryInfo"}) -as [string[]]
-        $Files = ( Get-ChildItem $finderPath | ?{ $_.GetType().Name -eq "FileInfo" }) -as [string[]]
+        $Folders = (Get-ChildItem $finderPath | Where-Object{ $_.GetType().Name -eq "DirectoryInfo"}) -as [string[]]
+        $Files = ( Get-ChildItem $finderPath | Where-Object{ $_.GetType().Name -eq "FileInfo" }) -as [string[]]
         if ($null -ne $Files.Length) {
             $FileCount = $Files.Length.ToString("#,0")
         }
