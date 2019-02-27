@@ -3,6 +3,6 @@ html,body{
     background-color: black;
     font-family: 'Meiryo', 'san serif';
 }
-h1{
+*{
     color: aliceblue;
 }
