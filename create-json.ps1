@@ -13,14 +13,8 @@ foreach ($DIR in $DIRS) {
         $Folders = ( Get-ChildItem $finderPath -Directory -Depth 0 ) -as [string[]]
         $hashs = @()
         foreach ($item in $Files) {
-            $hash=@{};
-            $hash.Add("index",$hash.Count)
-            $hash.Add( "item" , $item)
-            $hash.Add( "make" , 1)
-            $hash.Add( "delete" , 2)
-            $hashs+=$hash
+            $hashs+=@{index=$hash.Count;item=$item;make= 1;delete= 2;none=false}
         }
-        $hashs | ConvertTo-Json
         $obj += @{index = $obj.Count; path = $DIR; Files = $hashs; Folders = $Folders }
         # $obj | Add-Member $obj1 -Name $DIR -MemberType NoteProperty
     }
@@ -44,7 +38,7 @@ if ($errorMessage -ne "") {
 }
 Remove-Item .\log\oldlog.json -Force
 Rename-Item -NewName oldlog.json -LiteralPath .\log\newlog.json -Force
-$obj | ConvertTo-Json | Out-File .\log\newlog.json -Encoding default
+$obj | ConvertTo-Json -Depth 5 | Out-File .\log\newlog.json -Encoding default
 
 # $newlog = Get-Content .\log\newlog.json -Encoding Default -Raw | ConvertFrom-Json
 # $oldlog = Get-Content .\log\oldlog.json -Encoding Default -Raw | ConvertFrom-Json
