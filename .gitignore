@@ -1,2 +1,2 @@
-oldlog.json
-newlog.json
+*.json
+*.cfg

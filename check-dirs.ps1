@@ -1,6 +1,6 @@
 # 複数フォルダを指定できる設計になっています(配列)。
-$FoldersConfigPath = ".\folders-settings.cfg"
-$ExtensionsConfigPath = ".\extensions-settings.cfg"
+$FoldersConfigPath = ".\config\folders-settings.cfg"
+$ExtensionsConfigPath = ".\config\extensions-settings.cfg"
 $DIRS = (Get-Content $FoldersConfigPath) -as [string[]]
 $EXTS = (Get-Content $ExtensionsConfigPath) -as [string[]]
 # メインの処理
@@ -64,6 +64,7 @@ if ($errorMessage -ne "") {
 }
 #結果表示
 if ($resultMessage -ne "") {
-    [void][System.Windows.Forms.MessageBox]::Show($resultMessage, "GFモニタリング！")
+    # [void][System.Windows.Forms.MessageBox]::Show($resultMessage, "GFモニタリング！")
+    . .\toast.ps1 "Change Detected" "FolderMonitoring" .\test.html
 }
 exit
