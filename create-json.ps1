@@ -9,8 +9,8 @@ foreach ($DIR in $DIRS) {
     if (Test-Path $DIR) {
         $finderPath = ("FileSystem::$DIR") # dir $DIR/hoge.xlsx にすれば、hogxlsxファイルだけに絞れます
         Write-Output "<$finderPath>"
-        $Folders = (Get-ChildItem $finderPath | ? { $_.GetType().Name -eq "DirectoryInfo"}) -as [string[]]
-        $Files = ( Get-ChildItem $finderPath | ? { $_.GetType().Name -eq "FileInfo" }) -as [string[]]
+        $Folders = (Get-ChildItem $finderPath | Where-Object { $_.GetType().Name -eq "DirectoryInfo"}) -as [string[]]
+        $Files = ( Get-ChildItem $finderPath | Where-Object { $_.GetType().Name -eq "FileInfo" }) -as [string[]]
         $hashs = @()
         foreach ($item in $Files) {
             $hashs+=@{index=$hash.Count;item=$item;make= "2019/02/01";delete= $null;none=$false}
@@ -37,7 +37,7 @@ if ($errorMessage -ne "") {
             "GFモニタリング！")
 }
 Remove-Item .\log\oldlog.json -Force
-Rename-Item -NewName oldlog.json -LiteralPath .\log\newlog.json -Force
+Rename-Item -NewName oldlog.json -Path .\log\newlog.json -Force
 $obj | ConvertTo-Json -Depth 5 | Out-File .\log\newlog.json -Encoding default
 
 # $newlog = Get-Content .\log\newlog.json -Encoding Default -Raw | ConvertFrom-Json
