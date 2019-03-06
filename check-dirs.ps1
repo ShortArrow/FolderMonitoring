@@ -22,7 +22,7 @@ foreach ($DIR in $DIRS) {
         else {
             $FileCount = 0
         }
-        if ($null -ne $Files.Length) {
+        if ($null -ne $Folders.Length) {
             $FolderCount = $Folders.Length.ToString("#,0")
         }
         else {
